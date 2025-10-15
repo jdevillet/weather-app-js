@@ -1,0 +1,171 @@
+//=====================
+// Variables
+//=====================
+
+$background-color: #fafafa;
+$primary-color: #c6538c;
+$secondary-color: #c6538c;
+$font-color: rgb(17, 17, 17);
+// temperature colors
+$normal-temp-color: #c1d12e;
+$warm-temp-color: #992e2b;
+$cold-temp-color: #1a69aa;
+
+// details colors
+$details-text-color: rgb(39, 40, 102);
+
+//=====================
+// Reset
+//=====================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  font-family: Verdana, sans-serif;
+  background: $background-color;
+  display: flex;
+  justify-content: center;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+//=====================
+// App style
+//=====================
+.app-container {
+  max-width: 1260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //  delete
+  border: 1px solid black;
+  margin: 20px 0;
+  padding: 15px;
+
+  .app-header {
+    padding: 20px;
+    form {
+      background: rgba(255, 255, 255, 0.377);
+      border-radius: 20px;
+      box-shadow: 1px 1px 2px 0px rgba(73, 73, 73, 0.37);
+      #searchBar {
+        color: $font-color;
+        padding: 5px 10px;
+      }
+      #submitBtn {
+        background: rgb(26, 84, 170);
+        color: white;
+        border-radius: 0 20px 20px 0;
+        padding: 5px 10px;
+        box-shadow: 1px 1px 2px 0px rgba(26, 84, 170, 0.356);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .app-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    .weather-card {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+      padding: 30px;
+      background: #e0e0e065;
+      border-radius: 20px;
+      justify-content: space-around;
+      min-height: 300px;
+      max-width: 400px;
+      box-shadow: 1px 1px 2px 0px rgba(44, 44, 44, 0.356);
+      .card-header {
+        .location {
+          font-size: 1.5rem;
+        }
+        .today-date {
+          font-size: 1.2rem;
+        }
+      }
+      .weather-temp {
+        .today-weather {
+          font-size: 1.5rem;
+        }
+        .weather-img {
+        }
+        .today-temperature {
+          color: $warm-temp-color;
+          font-size: 1.5rem;
+        }
+      }
+
+      .weather-details {
+        .details {
+          .wind-speed {
+          }
+          .rain-chance {
+          }
+        }
+      }
+    }
+    .forecast-container {
+      background: rgba(167, 167, 167, 0.432);
+      min-width: 800px;
+      box-shadow: 1px 1px 0 0 black;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h4 {
+      }
+      .mini-weather-cards-container {
+        margin: 10px;
+      }
+    }
+  }
+}
