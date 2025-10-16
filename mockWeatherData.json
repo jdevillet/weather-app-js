@@ -106,7 +106,7 @@
           "uvindex": 0,
           "severerisk": 10,
           "conditions": "Overcast",
-          "icon": "cloudy",
+          "icon": "snow",
           "stations": [
             "EGWU",
             "EGLL",
@@ -9123,13 +9123,13 @@
           "solarenergy": 0,
           "uvindex": 0,
           "severerisk": 10,
-          "conditions": "Clear",
-          "icon": "clear-night",
+          "conditions": "snow",
+          "icon": "partly-cloudy-day",
           "stations": null,
           "source": "fcst"
         },
         {
-          "datetime": "19:00:00",
+          "datetime": "88:00:00",
           "datetimeEpoch": 1761591600,
           "tzoffset": 0,
           "temp": 48.5,
@@ -9152,7 +9152,7 @@
           "uvindex": 0,
           "severerisk": 10,
           "conditions": "Clear",
-          "icon": "clear-night",
+          "icon": "partly-cloudy-day",
           "stations": null,
           "source": "fcst"
         },
@@ -9641,7 +9641,7 @@
           "uvindex": 3,
           "severerisk": 10,
           "conditions": "Partially cloudy",
-          "icon": "partly-cloudy-day",
+          "icon": "snow",
           "stations": null,
           "source": "fcst"
         },

@@ -132,6 +132,14 @@ button {
   flex-direction: column;
   justify-content: center;
 }
-.app-container .app-body .forecast-container .mini-weather-cards-container {
+.app-container .app-body .forecast-container .forecast-cards-container {
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1080px;
+  overflow-x: scroll;
+}
+.app-container .app-body .forecast-container .forecast-cards-container .hourly-card {
+  max-height: 150px;
 }/*# sourceMappingURL=style.css.map */

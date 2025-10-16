@@ -8,6 +8,7 @@ const weatherIllustration = document.querySelector(".weather-img");
 const todayTemp = document.querySelector(".today-temperature");
 const windSpeed = document.querySelector(".wind-speed");
 const rainChance = document.querySelector(".rain-chance");
+const forecastCards = document.querySelector(".forecast-cards-container");
 
 const defaultCity = "London";
 let weatherData = {};
@@ -28,7 +29,7 @@ userForm.addEventListener("submit", async (e) => {
 async function fetchWeather(city) {
   try {
     const res = await axios.get(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key={PUT YOUR API KEY HERE}&unitGroup=metric`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key={YOUR API KEY}&unitGroup=metric`
     );
     weatherData = res.data;
     console.log(weatherData);
@@ -48,7 +49,7 @@ const updateUI = () => {
   const dateObj = new Date(dateToFormat);
   // --
 
-  locationCity.textContent = weatherData.resolvedAddress;
+  locationCity.textContent = weatherData.address;
   todayDate.textContent = dateObj.toLocaleDateString("fr-FR");
 
   todayWeather.textContent = weatherData.currentConditions.conditions;
@@ -57,6 +58,7 @@ const updateUI = () => {
   rainChance.textContent = `${weatherData.currentConditions.precipprob}%`;
 
   updateWeatherImage(weatherData.currentConditions.icon);
+  create24Forecast(weatherData.days[0].hours);
 };
 
 function updateWeatherImage(icon) {
@@ -70,7 +72,7 @@ function updateWeatherImage(icon) {
       svgUrl = "./img/clear-night.svg";
       break;
     case "partly-cloudy-day":
-      svgUrl = "./img/cloudy.svg";
+      svgUrl = "./img/partly-cloudy-day.svg";
       break;
     case "cloudy":
       svgUrl = "./img/cloudy.svg";
@@ -82,7 +84,7 @@ function updateWeatherImage(icon) {
       svgUrl = "./img/rain.svg";
       break;
     case "snow":
-      svgUrl = "./img/snowflake.svg";
+      svgUrl = "./img/snow.svg";
       break;
     case "thunderstorm":
       svgUrl = "./img/thunderstorm.svg";
@@ -107,3 +109,20 @@ function updateWeatherImage(icon) {
       weatherIllustration.innerHTML = "";
     });
 }
+
+const create24Forecast = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    const hourlyData = arr[i];
+    let timeString = hourlyData.datetime;
+    let shortHour = timeString.slice(0, 2) + "h";
+    const hourlyCard = document.createElement("li");
+    hourlyCard.classList.add("hourly-card");
+    hourlyCard.innerHTML = `
+
+      <div class="hour">${shortHour}</div>
+      <img src="./img/${hourlyData.icon}.svg" alt=${hourlyData.icon} />
+      <div class="temp">${hourlyData.temp} °C</div>
+    `;
+    forecastCards.appendChild(hourlyCard);
+  }
+};
