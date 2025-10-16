@@ -137,6 +137,14 @@ button {
           font-size: 1.5rem;
         }
         .weather-img {
+          padding: 10px 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .weather-img svg {
+          max-height: 80px;
         }
         .today-temperature {
           color: $warm-temp-color;

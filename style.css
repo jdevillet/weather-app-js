@@ -110,6 +110,15 @@ button {
 .app-container .app-body .weather-card .weather-temp .today-weather {
   font-size: 1.5rem;
 }
+.app-container .app-body .weather-card .weather-temp .weather-img {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app-container .app-body .weather-card .weather-temp .weather-img svg {
+  max-height: 80px;
+}
 .app-container .app-body .weather-card .weather-temp .today-temperature {
   color: #992e2b;
   font-size: 1.5rem;
@@ -125,6 +134,4 @@ button {
 }
 .app-container .app-body .forecast-container .mini-weather-cards-container {
   margin: 10px;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

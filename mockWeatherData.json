@@ -11,9 +11,9 @@
     {
       "datetime": "2025-10-15",
       "datetimeEpoch": 1760482800,
-      "tempmax": 56.4,
-      "tempmin": 51.3,
-      "temp": 53.1,
+      "tempmax": 24.4,
+      "tempmin": 20.3,
+      "temp": 22.1,
       "feelslikemax": 56.4,
       "feelslikemin": 51.3,
       "feelslike": 53.1,
@@ -10757,7 +10757,7 @@
   "currentConditions": {
     "datetime": "15:54:00",
     "datetimeEpoch": 1760540040,
-    "temp": 56.8,
+    "temp": 24.2,
     "feelslike": 56.8,
     "humidity": 78.9,
     "dew": 50.3,
@@ -10776,7 +10776,7 @@
     "solarenergy": 0.2,
     "uvindex": 1,
     "conditions": "Overcast",
-    "icon": "cloudy",
+    "icon": "clear-day",
     "stations": [
       "D5621",
       "F6665",
