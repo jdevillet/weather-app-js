@@ -2,17 +2,14 @@
 // Variables
 //=====================
 
+$accent-color: rgb(39, 40, 102);
 $background-color: #fafafa;
-$primary-color: #c6538c;
-$secondary-color: #c6538c;
-$font-color: rgb(17, 17, 17);
 // temperature colors
 $normal-temp-color: #c1d12e;
 $warm-temp-color: #992e2b;
 $cold-temp-color: #1a69aa;
 
-// details colors
-$details-text-color: rgb(39, 40, 102);
+$font-color: rgb(17, 17, 17);
 
 //=====================
 // Reset
@@ -30,12 +27,21 @@ html {
 }
 
 body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  font-family: Verdana, sans-serif;
-  background: $background-color;
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 20px;
+  color: rgb(17, 17, 17);
+  position: relative;
+  overflow: hidden;
 }
 
 img,
@@ -76,111 +82,152 @@ button {
 // App style
 //=====================
 .app-container {
-  max-width: 1260px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //  delete
-  border: 1px solid black;
   margin: 20px 0;
   padding: 15px;
 
-  .app-header {
-    padding: 20px;
-    form {
-      background: rgba(255, 255, 255, 0.377);
-      border-radius: 20px;
-      box-shadow: 1px 1px 2px 0px rgba(73, 73, 73, 0.37);
+  width: 100%;
+
+  .request-form {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .search-wrapper {
+      background: $background-color;
+      // backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 99px;
+      padding: 10px;
+      box-shadow: 0 0px 18px 0px rgba(8, 8, 8, 0.411);
+      // border: 2px solid rgba(255, 255, 255, 0);
+      transition: all 0.4s ease;
+
+      &:hover {
+        border-color: $accent-color;
+        border-width: 2px;
+        transform: translateY(-3px);
+      }
+      &:focus-within {
+        border: 2px solid $accent-color;
+      }
+
+      .glass-icon {
+        color: $accent-color;
+      }
       #searchBar {
         color: $font-color;
         padding: 5px 10px;
+        min-width: 130px;
       }
       #submitBtn {
-        background: rgb(26, 84, 170);
+        background: $accent-color;
         color: white;
-        border-radius: 0 20px 20px 0;
-        padding: 5px 10px;
+        border-radius: 99px;
+        padding: 10px 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
         box-shadow: 1px 1px 2px 0px rgba(26, 84, 170, 0.356);
         cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: lighten($accent-color, 10%);
+          box-shadow: 0 0 10px $accent-color;
+          transform: translateY(-2px);
+        }
       }
     }
   }
+}
 
-  .app-body {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+.app-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  .weather-card {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background: $background-color;
+    border-radius: 25px;
+    padding: 15px;
+    min-height: 400px;
+    justify-content: space-around;
+    max-width: 400px;
 
-    .weather-card {
+    .card-left {
       display: flex;
       flex-direction: column;
-      margin: 20px 0;
-      padding: 30px;
-      background: #e0e0e065;
-      border-radius: 20px;
       justify-content: space-around;
-      min-height: 300px;
-      max-width: 400px;
-      box-shadow: 1px 1px 2px 0px rgba(44, 44, 44, 0.356);
-      .card-header {
+      .day-infos {
+        line-height: 150%;
         .location {
-          font-size: 1.5rem;
+          font-size: 1.4rem;
+          font-weight: 600;
         }
         .today-date {
-          font-size: 1.2rem;
+          font-size: 0.9rem;
         }
       }
-      .weather-temp {
-        .today-weather {
-          font-size: 1.5rem;
-        }
-        .weather-img {
-          padding: 10px 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
 
-        .weather-img svg {
-          max-height: 80px;
+      .weather-temp {
+        line-height: 220%;
+        .today-weather {
+          font-size: 1.4rem;
+          font-weight: 600;
         }
         .today-temperature {
-          color: $warm-temp-color;
-          font-size: 1.5rem;
-        }
-      }
-
-      .weather-details {
-        .details {
-          .wind-speed {
-          }
-          .rain-chance {
-          }
+          font-size: 2rem;
+          font-weight: 600;
         }
       }
     }
-    .forecast-container {
-      background: rgba(167, 167, 167, 0.432);
-      min-width: 800px;
-      box-shadow: 1px 1px 0 0 black;
-      min-height: 150px;
+    .card-right {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      h4 {
-      }
-      .forecast-cards-container {
-        margin: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 1080px;
-        overflow-x: scroll;
-        .hourly-card {
-          max-height: 150px;
+      justify-content: space-around;
+      align-items: center;
+      .weather-img {
+        & svg {
+          max-height: 120px;
         }
+      }
+      .weather-details {
+        display: flex;
+        justify-content: space-between;
+        .details {
+          margin: 2px;
+        }
+      }
+    }
+  }
+  .forecast-container {
+    margin-top: 100px;
+    background: rgba(167, 167, 167, 0.432);
+    max-width: 400px;
+    box-shadow: 1px 1px 0 0 black;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+    h4 {
+    }
+    .forecast-cards-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      overflow-x: scroll;
+      .hourly-card {
+        max-height: 150px;
       }
     }
   }

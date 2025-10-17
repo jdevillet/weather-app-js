@@ -11,12 +11,16 @@ html {
 }
 
 body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  font-family: Verdana, sans-serif;
-  background: #fafafa;
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 20px;
+  color: rgb(17, 17, 17);
+  position: relative;
+  overflow: hidden;
 }
 
 img,
@@ -54,92 +58,141 @@ button {
 }
 
 .app-container {
-  max-width: 1260px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
   margin: 20px 0;
   padding: 15px;
+  width: 100%;
 }
-.app-container .app-header {
-  padding: 20px;
+.app-container .request-form {
+  max-width: 600px;
+  margin: 0 auto;
 }
-.app-container .app-header form {
-  background: rgba(255, 255, 255, 0.377);
-  border-radius: 20px;
-  box-shadow: 1px 1px 2px 0px rgba(73, 73, 73, 0.37);
+.app-container .request-form .search-wrapper {
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 99px;
+  padding: 10px;
+  box-shadow: 0 0px 18px 0px rgba(8, 8, 8, 0.411);
+  transition: all 0.4s ease;
 }
-.app-container .app-header form #searchBar {
+.app-container .request-form .search-wrapper:hover {
+  border-color: rgb(39, 40, 102);
+  border-width: 2px;
+  transform: translateY(-3px);
+}
+.app-container .request-form .search-wrapper:focus-within {
+  border: 2px solid rgb(39, 40, 102);
+}
+.app-container .request-form .search-wrapper .glass-icon {
+  color: rgb(39, 40, 102);
+}
+.app-container .request-form .search-wrapper #searchBar {
   color: rgb(17, 17, 17);
   padding: 5px 10px;
+  min-width: 130px;
 }
-.app-container .app-header form #submitBtn {
-  background: rgb(26, 84, 170);
+.app-container .request-form .search-wrapper #submitBtn {
+  background: rgb(39, 40, 102);
   color: white;
-  border-radius: 0 20px 20px 0;
-  padding: 5px 10px;
+  border-radius: 99px;
+  padding: 10px 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
   box-shadow: 1px 1px 2px 0px rgba(26, 84, 170, 0.356);
   cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
-.app-container .app-body {
-  width: 100%;
+.app-container .request-form .search-wrapper #submitBtn:hover {
+  background-color: rgb(53.1063829787, 54.4680851064, 138.8936170213);
+  box-shadow: 0 0 10px rgb(39, 40, 102);
+  transform: translateY(-2px);
+}
+
+.app-body {
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-}
-.app-container .app-body .weather-card {
-  display: flex;
-  flex-direction: column;
   margin: 20px 0;
-  padding: 30px;
-  background: rgba(224, 224, 224, 0.3960784314);
-  border-radius: 20px;
+}
+.app-body .weather-card {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background: #fafafa;
+  border-radius: 25px;
+  padding: 15px;
+  min-height: 400px;
   justify-content: space-around;
-  min-height: 300px;
   max-width: 400px;
-  box-shadow: 1px 1px 2px 0px rgba(44, 44, 44, 0.356);
 }
-.app-container .app-body .weather-card .card-header .location {
-  font-size: 1.5rem;
-}
-.app-container .app-body .weather-card .card-header .today-date {
-  font-size: 1.2rem;
-}
-.app-container .app-body .weather-card .weather-temp .today-weather {
-  font-size: 1.5rem;
-}
-.app-container .app-body .weather-card .weather-temp .weather-img {
-  padding: 10px 0;
+.app-body .weather-card .card-left {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+.app-body .weather-card .card-left .day-infos {
+  line-height: 150%;
+}
+.app-body .weather-card .card-left .day-infos .location {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.app-body .weather-card .card-left .day-infos .today-date {
+  font-size: 0.9rem;
+}
+.app-body .weather-card .card-left .weather-temp {
+  line-height: 220%;
+}
+.app-body .weather-card .card-left .weather-temp .today-weather {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.app-body .weather-card .card-left .weather-temp .today-temperature {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.app-body .weather-card .card-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
-.app-container .app-body .weather-card .weather-temp .weather-img svg {
-  max-height: 80px;
+.app-body .weather-card .card-right .weather-img svg {
+  max-height: 120px;
 }
-.app-container .app-body .weather-card .weather-temp .today-temperature {
-  color: #992e2b;
-  font-size: 1.5rem;
+.app-body .weather-card .card-right .weather-details {
+  display: flex;
+  justify-content: space-between;
 }
-.app-container .app-body .forecast-container {
+.app-body .weather-card .card-right .weather-details .details {
+  margin: 2px;
+}
+.app-body .forecast-container {
+  margin-top: 100px;
   background: rgba(167, 167, 167, 0.432);
-  min-width: 800px;
+  max-width: 400px;
   box-shadow: 1px 1px 0 0 black;
   min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  display: none;
 }
-.app-container .app-body .forecast-container .forecast-cards-container {
-  margin: 10px;
+.app-body .forecast-container .forecast-cards-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1080px;
+  width: 100%;
+  padding: 20px;
   overflow-x: scroll;
 }
-.app-container .app-body .forecast-container .forecast-cards-container .hourly-card {
+.app-body .forecast-container .forecast-cards-container .hourly-card {
   max-height: 150px;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

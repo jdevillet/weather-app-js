@@ -6,33 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App JS</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
   <div class="app-container">
     <div class="app-header">
       <form class="request-form" action="#">
-        <input id="searchBar" type="text" placeholder="City">
-        <input id="submitBtn" type="submit">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass glass-icon"></i>
+          <input id="searchBar" type="text" placeholder="Search for weather" />
+          <input id="submitBtn" type="submit" value="Search" />
+        </div>
       </form>
     </div>
 
     <div class="app-body">
       <div class="weather-card">
-        <div class="card-header">
-          <h3 class="location"></h3>
-          <p class="today-date"></p>
+        <div class="card-left">
+          <div class="day-infos">
+            <h3 class="location"></h3>
+            <p class="today-date"></p>
+          </div>
+
+          <div class="weather-temp">
+            <p class="today-weather"></p>
+            <p class="today-temperature"></p>
+          </div>
         </div>
 
-        <div class="weather-temp">
-          <p class="today-weather"></p>
+        <div class="card-right">
           <div class="weather-img"></div>
-          <p class="today-temperature"></p>
-        </div>
 
-        <div class="weather-details">
-          <p class="details">Wind speed: <span class="wind-speed"></span></p>
-          <p class="details">Rain chance: <span class="rain-chance">40%</span></p>
+          <div class="weather-details">
+            <p class="details"><i class="fa-solid fa-wind"></i> <span class="wind-speed"></span></p>
+            <p class="details"><i class="fa-solid fa-umbrella"></i> <span class="rain-chance">40%</span></p>
+          </div>
         </div>
       </div>
 

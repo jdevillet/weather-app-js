@@ -13,31 +13,45 @@ const forecastCards = document.querySelector(".forecast-cards-container");
 const defaultCity = "London";
 let weatherData = {};
 
-fetchWeather(defaultCity);
+// ========================
+//====================
+// Get real weather data, uncomment this part
+// fetchWeather(defaultCity);
 
-userForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const cityRequest = searchBar.value.trim();
+// userForm.addEventListener("submit", async (e) => {
+//   e.preventDefault();
+//   const cityRequest = searchBar.value.trim();
 
-  if (!cityRequest) {
-    console.log("Enter a city please");
-    return;
-  }
-  await fetchWeather(cityRequest);
-});
+//   if (!cityRequest) {
+//     console.log("Enter a city please");
+//     return;
+//   }
+//   await fetchWeather(cityRequest);
+// });
 
-async function fetchWeather(city) {
-  try {
-    const res = await axios.get(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key={YOUR API KEY}&unitGroup=metric`
-    );
-    weatherData = res.data;
-    console.log(weatherData);
+// async function fetchWeather(city) {
+//   try {
+//     const res = await axios.get(
+//       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key={your  api key}&unitGroup=metric`
+//     );
+//     weatherData = res.data;
+//     console.log(weatherData);
 
-    updateUI();
-  } catch (err) {
-    console.error("Couldn't load weather data", err);
-  }
+//     updateUI();
+//   } catch (err) {
+//     console.error("Couldn't load weather data", err);
+//   }
+// }
+//=========================
+//=============================
+
+// Fetch mock weather data
+async function loadWeather() {
+  const res = await fetch("mockWeatherData.json");
+  weatherData = await res.json();
+
+  updateUI();
+  console.log(weatherData);
 }
 
 // ==========================
@@ -47,19 +61,27 @@ const updateUI = () => {
   // date formater
   let dateToFormat = weatherData.days[0].datetime;
   const dateObj = new Date(dateToFormat);
+  const options = { weekday: "long", month: "long", day: "numeric" };
+  const formattedDate = dateObj.toLocaleDateString("en-US", options);
   // --
 
   locationCity.textContent = weatherData.address;
-  todayDate.textContent = dateObj.toLocaleDateString("fr-FR");
+  todayDate.textContent = formattedDate;
 
   todayWeather.textContent = weatherData.currentConditions.conditions;
-  todayTemp.textContent = `${weatherData.currentConditions.temp}°C`;
-  windSpeed.textContent = `${weatherData.currentConditions.windspeed}kp/h`;
-  rainChance.textContent = `${weatherData.currentConditions.precipprob}%`;
+  todayTemp.textContent = `${Math.round(weatherData.currentConditions.temp)}°C`;
+  windSpeed.textContent = `${Math.round(
+    weatherData.currentConditions.windspeed
+  )}km/h`;
+  rainChance.textContent = `${Math.round(
+    weatherData.currentConditions.precipprob
+  )}%`;
 
   updateWeatherImage(weatherData.currentConditions.icon);
   create24Forecast(weatherData.days[0].hours);
 };
+
+loadWeather();
 
 function updateWeatherImage(icon) {
   let svgUrl;
