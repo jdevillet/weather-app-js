@@ -25,24 +25,34 @@
 
     <div class="app-body">
       <div class="weather-card">
-        <div class="card-left">
-          <div class="day-infos">
-            <h3 class="location"></h3>
-            <p class="today-date"></p>
+        <div class="card-body">
+
+          <div class="card-left">
+            <div class="day-infos">
+              <h3 class="location"></h3>
+              <p class="today-date"></p>
+            </div>
+
+            <div class="weather-temp">
+              <p class="today-weather"></p>
+              <p class="today-temperature"></p>
+            </div>
           </div>
 
-          <div class="weather-temp">
-            <p class="today-weather"></p>
-            <p class="today-temperature"></p>
+          <div class="card-right">
+            <div class="weather-img"></div>
           </div>
         </div>
+        <div class="card-footer">
 
-        <div class="card-right">
-          <div class="weather-img"></div>
+          <div class="weather-details-container">
+            <div class="details">
+              <p class="details-text"><i class="fa-solid fa-wind"></i> <span class="wind-speed"></span></p>
+            </div>
+            <div class="details">
+              <p class="details-text"><i class="fa-solid fa-umbrella"></i> <span class="rain-chance"></span></p>
+            </div>
 
-          <div class="weather-details">
-            <p class="details"><i class="fa-solid fa-wind"></i> <span class="wind-speed"></span></p>
-            <p class="details"><i class="fa-solid fa-umbrella"></i> <span class="rain-chance">40%</span></p>
           </div>
         </div>
       </div>
@@ -55,9 +65,10 @@
       </div>
     </div>
   </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script src="index.js" type="module"></script>
+  <script src="index.js" type="module"></script>
+
+</body>
 
 </html>

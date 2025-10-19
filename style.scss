@@ -1,7 +1,6 @@
 //=====================
 // Variables
 //=====================
-
 $accent-color: rgb(39, 40, 102);
 $background-color: #fafafa;
 // temperature colors
@@ -39,9 +38,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  color: rgb(17, 17, 17);
+  color: $font-color;
   position: relative;
-  overflow: hidden;
 }
 
 img,
@@ -88,23 +86,27 @@ button {
   align-items: center;
   margin: 20px 0;
   padding: 15px;
-
   width: 100%;
 
+  .app-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
   .request-form {
-    max-width: 600px;
+    max-width: 400px;
     margin: 0 auto;
 
     .search-wrapper {
       background: $background-color;
-      // backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
       border-radius: 99px;
-      padding: 10px;
+      padding: 8px;
       box-shadow: 0 0px 18px 0px rgba(8, 8, 8, 0.411);
-      // border: 2px solid rgba(255, 255, 255, 0);
       transition: all 0.4s ease;
 
       &:hover {
@@ -112,32 +114,38 @@ button {
         border-width: 2px;
         transform: translateY(-3px);
       }
+
       &:focus-within {
         border: 2px solid $accent-color;
       }
 
       .glass-icon {
         color: $accent-color;
+        margin-left: 6px;
       }
+
       #searchBar {
         color: $font-color;
-        padding: 5px 10px;
-        min-width: 130px;
+        padding: 6px 10px;
+        flex: 1 1 auto;
+        max-width: 100%;
       }
+
       #submitBtn {
         background: $accent-color;
         color: white;
         border-radius: 99px;
-        padding: 10px 20px;
+        padding: 8px 14px;
         font-weight: 600;
         letter-spacing: 1px;
-        box-shadow: 1px 1px 2px 0px rgba(26, 84, 170, 0.356);
+        box-shadow: 1px 1px 2px rgba(26, 84, 170, 0.356);
         cursor: pointer;
-        font-size: 1rem;
+        font-size: 0.95rem;
         transition: all 0.2s ease;
 
         &:hover {
-          background-color: lighten($accent-color, 10%);
+          background-color: color-mix(in srgb, $accent-color 90%, white 10%);
+
           box-shadow: 0 0 10px $accent-color;
           transform: translateY(-2px);
         }
@@ -146,88 +154,164 @@ button {
   }
 }
 
+//=====================
+// App body
+//=====================
 .app-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
+
   .weather-card {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: $background-color;
     border-radius: 25px;
     padding: 15px;
-    min-height: 400px;
+    min-height: 300px;
     justify-content: space-around;
     max-width: 400px;
 
-    .card-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      .day-infos {
-        line-height: 150%;
-        .location {
-          font-size: 1.4rem;
-          font-weight: 600;
+    .card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+
+      .card-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .day-infos {
+          line-height: 150%;
+
+          .location {
+            font-size: 1.4rem;
+            font-weight: 600;
+          }
+
+          .today-date {
+            font-size: 0.9rem;
+          }
         }
-        .today-date {
-          font-size: 0.9rem;
+
+        .weather-temp {
+          line-height: 220%;
+
+          .today-weather {
+            font-size: 1.4rem;
+            font-weight: 600;
+          }
+
+          .today-temperature {
+            font-size: 2rem;
+            font-weight: 600;
+          }
         }
       }
 
-      .weather-temp {
-        line-height: 220%;
-        .today-weather {
-          font-size: 1.4rem;
-          font-weight: 600;
-        }
-        .today-temperature {
-          font-size: 2rem;
-          font-weight: 600;
-        }
-      }
-    }
-    .card-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      .weather-img {
-        & svg {
+      .card-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        .weather-img svg {
           max-height: 120px;
         }
       }
-      .weather-details {
-        display: flex;
-        justify-content: space-between;
+    }
+
+    .card-footer {
+      width: 100%;
+      min-height: 60px;
+
+      .weather-details-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+
         .details {
-          margin: 2px;
+          background: rgba(177, 177, 177, 0.295);
+          border-radius: 50px;
+          padding: 6px;
+
+          .details-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 6px;
+          }
         }
       }
     }
   }
+
   .forecast-container {
     margin-top: 100px;
     background: rgba(167, 167, 167, 0.432);
     max-width: 400px;
     box-shadow: 1px 1px 0 0 black;
     min-height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     display: none;
-    h4 {
-    }
+
     .forecast-cards-container {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
       padding: 20px;
-      overflow-x: scroll;
+      overflow-x: auto;
+
       .hourly-card {
         max-height: 150px;
+      }
+    }
+  }
+}
+
+//=====================
+// Responsive adjustments
+//=====================
+@media (max-width: 450px) {
+  .app-container {
+    padding: 12px;
+
+    .request-form {
+      width: 100%;
+
+      .search-wrapper {
+        padding: 6px;
+
+        #searchBar {
+          padding: 6px 8px;
+          font-size: 0.95rem;
+        }
+
+        #submitBtn {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .app-body {
+    .weather-card {
+      padding: 12px;
+      max-width: 100%;
+
+      .card-body {
+        grid-template-columns: 1fr;
+        align-items: start;
+        margin: 20px 0;
+      }
+
+      .card-footer .weather-details-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       }
     }
   }
