@@ -9,9 +9,30 @@ const todayTemp = document.querySelector(".today-temperature");
 const windSpeed = document.querySelector(".wind-speed");
 const rainChance = document.querySelector(".rain-chance");
 const forecastCards = document.querySelector(".forecast-cards-container");
+const themeToggle = document.querySelector(".theme-toggle");
 
 const defaultCity = "London";
 let weatherData = {};
+
+// Toggle dark mode
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Sauvegarder la préférence
+  const isDark = document.body.classList.contains("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+
+// Charger la préférence au démarrage
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
+}
+
+// Ou détecter la préférence système
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  document.body.classList.add("dark-mode");
+}
 
 // ========================
 //====================

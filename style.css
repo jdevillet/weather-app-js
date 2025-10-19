@@ -1,3 +1,35 @@
+:root {
+  --accent-color: rgb(39, 40, 102);
+  --background-color: #fafafa;
+  --font-color: rgb(17, 17, 17);
+  --font-secondary-color: rgba(17, 17, 17, 0.6);
+  --temp-normal-color: #c1d12e;
+  --temp-warm-color: #992e2b;
+  --temp-cold-color: #1a69aa;
+  --card-bg-color: #ffffff;
+  --card-details-bg-color: rgba(177, 177, 177, 0.295);
+  --shadow-color: rgba(8, 8, 8, 0.411);
+  --btn-shadow-color: rgba(26, 84, 170, 0.356);
+  --gradient-start-color: #667eea;
+  --gradient-end-color: #764ba2;
+}
+
+body.dark-mode {
+  --accent-color: rgb(79, 80, 152);
+  --background-color: #2c2c2c;
+  --font-color: rgb(240, 240, 240);
+  --font-secondary-color: rgba(240, 240, 240, 0.6);
+  --temp-normal-color: #d4e042;
+  --temp-warm-color: #ff4d4a;
+  --temp-cold-color: #4a9fd8;
+  --card-bg-color: #1e1e1e;
+  --card-details-bg-color: rgba(80, 80, 80, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --btn-shadow-color: rgba(79, 80, 152, 0.4);
+  --gradient-start-color: #4a5568;
+  --gradient-end-color: #2d3748;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,14 +44,15 @@ html {
 
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--gradient-start-color) 0%, var(--gradient-end-color) 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  color: rgb(17, 17, 17);
+  color: var(--font-color);
   position: relative;
+  transition: background 0.3s ease;
 }
 
 img,
@@ -56,6 +89,36 @@ button {
   cursor: pointer;
 }
 
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+.theme-toggle:hover {
+  transform: translateY(-2px) rotate(15deg);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
+.theme-toggle i {
+  color: var(--accent-color);
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+.theme-toggle:active i {
+  transform: scale(0.9);
+}
+
 .app-container {
   max-width: 400px;
   display: flex;
@@ -76,49 +139,55 @@ button {
   margin: 0 auto;
 }
 .app-container .request-form .search-wrapper {
-  background: #fafafa;
+  background: var(--background-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 99px;
   padding: 8px;
-  box-shadow: 0 0px 18px 0px rgba(8, 8, 8, 0.411);
+  box-shadow: 0 0px 18px 0px var(--shadow-color);
   transition: all 0.4s ease;
+  border: 2px solid transparent;
 }
 .app-container .request-form .search-wrapper:hover {
-  border-color: rgb(39, 40, 102);
-  border-width: 2px;
+  border-color: var(--accent-color);
   transform: translateY(-3px);
 }
 .app-container .request-form .search-wrapper:focus-within {
-  border: 2px solid rgb(39, 40, 102);
+  border-color: var(--accent-color);
 }
 .app-container .request-form .search-wrapper .glass-icon {
-  color: rgb(39, 40, 102);
+  color: var(--accent-color);
   margin-left: 6px;
 }
 .app-container .request-form .search-wrapper #searchBar {
-  color: rgb(17, 17, 17);
+  color: var(--font-color);
   padding: 6px 10px;
   flex: 1 1 auto;
   max-width: 100%;
 }
+.app-container .request-form .search-wrapper #searchBar::placeholder {
+  color: var(--font-secondary-color);
+}
 .app-container .request-form .search-wrapper #submitBtn {
-  background: rgb(39, 40, 102);
+  background: var(--accent-color);
   color: white;
   border-radius: 99px;
   padding: 8px 14px;
   font-weight: 600;
   letter-spacing: 1px;
-  box-shadow: 1px 1px 2px rgba(26, 84, 170, 0.356);
+  box-shadow: 1px 1px 2px var(--btn-shadow-color);
   cursor: pointer;
   font-size: 0.95rem;
   transition: all 0.2s ease;
 }
 .app-container .request-form .search-wrapper #submitBtn:hover {
-  background-color: color-mix(in srgb, rgb(39, 40, 102) 90%, white 10%);
-  box-shadow: 0 0 10px rgb(39, 40, 102);
+  background-color: color-mix(in srgb, var(--accent-color) 85%, white 15%);
+  box-shadow: 0 0 10px var(--accent-color);
   transform: translateY(-2px);
+}
+.app-container .request-form .search-wrapper #submitBtn:active {
+  transform: translateY(0);
 }
 
 .app-body {
@@ -131,12 +200,18 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fafafa;
+  background: var(--card-bg-color);
   border-radius: 25px;
   padding: 15px;
   min-height: 300px;
   justify-content: space-around;
   max-width: 400px;
+  box-shadow: 0 8px 24px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+.app-body .weather-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px var(--shadow-color);
 }
 .app-body .weather-card .card-body {
   display: grid;
@@ -154,9 +229,11 @@ button {
 .app-body .weather-card .card-body .card-left .day-infos .location {
   font-size: 1.4rem;
   font-weight: 600;
+  color: var(--accent-color);
 }
 .app-body .weather-card .card-body .card-left .day-infos .today-date {
   font-size: 0.9rem;
+  color: var(--font-secondary-color);
 }
 .app-body .weather-card .card-body .card-left .weather-temp {
   line-height: 220%;
@@ -164,10 +241,21 @@ button {
 .app-body .weather-card .card-body .card-left .weather-temp .today-weather {
   font-size: 1.4rem;
   font-weight: 600;
+  color: var(--font-color);
 }
 .app-body .weather-card .card-body .card-left .weather-temp .today-temperature {
   font-size: 2rem;
   font-weight: 600;
+  color: var(--accent-color);
+}
+.app-body .weather-card .card-body .card-left .weather-temp .today-temperature.normal {
+  color: var(--temp-normal-color);
+}
+.app-body .weather-card .card-body .card-left .weather-temp .today-temperature.warm {
+  color: var(--temp-warm-color);
+}
+.app-body .weather-card .card-body .card-left .weather-temp .today-temperature.cold {
+  color: var(--temp-cold-color);
 }
 .app-body .weather-card .card-body .card-right {
   display: flex;
@@ -177,6 +265,7 @@ button {
 }
 .app-body .weather-card .card-body .card-right .weather-img svg {
   max-height: 120px;
+  filter: drop-shadow(0 4px 8px var(--shadow-color));
 }
 .app-body .weather-card .card-footer {
   width: 100%;
@@ -188,23 +277,39 @@ button {
   gap: 8px;
 }
 .app-body .weather-card .card-footer .weather-details-container .details {
-  background: rgba(177, 177, 177, 0.295);
+  background: var(--card-details-bg-color);
   border-radius: 50px;
   padding: 6px;
+  transition: all 0.3s ease;
+}
+.app-body .weather-card .card-footer .weather-details-container .details:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--card-details-bg-color) 80%, var(--accent-color) 20%);
 }
 .app-body .weather-card .card-footer .weather-details-container .details .details-text {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 6px;
+  color: var(--font-color);
+}
+.app-body .weather-card .card-footer .weather-details-container .details .details-text i {
+  color: var(--accent-color);
+  margin-right: 6px;
 }
 .app-body .forecast-container {
   margin-top: 100px;
-  background: rgba(167, 167, 167, 0.432);
+  background: var(--card-bg-color);
   max-width: 400px;
-  box-shadow: 1px 1px 0 0 black;
+  box-shadow: 0 4px 16px var(--shadow-color);
   min-height: 150px;
   display: none;
+  border-radius: 15px;
+  padding: 15px;
+}
+.app-body .forecast-container h4 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
 }
 .app-body .forecast-container .forecast-cards-container {
   display: flex;
@@ -216,9 +321,22 @@ button {
 }
 .app-body .forecast-container .forecast-cards-container .hourly-card {
   max-height: 150px;
+  background: var(--card-details-bg-color);
+  border-radius: 12px;
+  padding: 10px;
+  margin: 0 5px;
 }
 
 @media (max-width: 450px) {
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+  }
+  .theme-toggle i {
+    font-size: 1rem;
+  }
   .app-container {
     padding: 12px;
   }
